@@ -1,0 +1,22 @@
+import streamlit as st
+from transformers import pipeline
+
+st.title("AI CV Assistant")
+
+st.write("Welcome! Enter your resume text or cover letter below and get it enhanced by AI.")
+
+# Text input
+user_text = st.text_area("Enter your text here:", height=300)
+
+if st.button("Enhance Text"):
+    if user_text.strip():
+        # Using a simple transformer pipeline for demonstration (e.g., text2text-generation)
+        try:
+            generator = pipeline("text2text-generation", model="t5-base")
+            result = generator(user_text, max_length=512)[0]['generated_text']
+            st.subheader("Enhanced Text:")
+            st.write(result)
+        except Exception as e:
+            st.error(f"Error: {e}")
+    else:
+        st.warning("Please enter some text first.")
