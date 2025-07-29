@@ -1,0 +1,7 @@
+streamlit
+transformers
+torch
+
+streamlit==1.25.0
+transformers==4.30.2
+torch==2.0.1
